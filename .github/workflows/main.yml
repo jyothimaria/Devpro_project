@@ -29,8 +29,8 @@ jobs:
       - name: Build and Test
         run: |
 
-          
-          python main.py 
+          mkdir -p logs
+          python main.py > logs/build.log 2>&1
          
          
       - name: Archive log files
