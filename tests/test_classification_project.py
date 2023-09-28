@@ -1,6 +1,8 @@
 import pytest
 import tensorflow as tf
 import numpy as np
+import sys
+sys.path.insert(0, '../src')
 from src.data_preparation import load_cifar10_data
 from src.model import create_cnn_model
 from src.train import train_model
