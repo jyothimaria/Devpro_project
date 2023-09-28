@@ -43,7 +43,7 @@ jobs:
 
       - name: Run tests and generate coverage
         run: |
-            mkdir tests
+           
             pytest tests/  # Adjust test paths
             coverage report -m --fail-under=80  # Set your desired coverage threshold
 
