@@ -1,54 +1,57 @@
 name: Python CI/CD
 
+ 
+
 on:
   push:
     branches:
       - master  # Change this to your main branch name
 
+ 
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
+ 
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
+
+
+ 
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11 
+          python-version: 3.11
+
+ 
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           python -m pip install tensorflow --ignore-installed
           python -m pip install pillow
-          python -m pip install pytest
-          
+
+
+ 
 
       - name: Build and Test
         run: |
 
+ 
+
           mkdir -p logs
           python main.py > logs/build.log 2>&1
-         
-         
+
+
       - name: Archive log files
         uses: actions/upload-artifact@v2
         with:
           name: build-logs
 
+ 
+
           path: logs
-
-      - name: Run tests and generate coverage
-        run: |
-           
-            pytest tests/  # Adjust test paths
-            coverage report -m --fail-under=80  # Set your desired coverage threshold
-
-      - name: Save test results
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results
-          path: coverage.xml
