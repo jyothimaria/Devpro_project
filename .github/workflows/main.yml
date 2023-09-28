@@ -51,7 +51,18 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: build-logs
-
+          
+      - name: Run tests and generate coverage
+        run: |
+           
+            pytest tests/  # Adjust test paths
+            coverage report -m --fail-under=80  # Set your desired coverage threshold
+            
+      - name: Save test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: coverage.xml
  
 
           path: logs
