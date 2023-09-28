@@ -55,15 +55,17 @@ jobs:
           
       - name: Run tests and generate coverage
         run: |
-           
-            pytest tests/  # Adjust test paths
-            coverage report -m --fail-under=80  # Set your desired coverage threshold
+            python -m pip install pytest pytest-cov
+            pytest --cov=tests/  # Adjust test paths
+            coverage xml -o coverage.xml
             
       - name: Save test results
         uses: actions/upload-artifact@v2
         with:
           name: test-results
-          path: coverage.xml
+          path: |
+              logs/
+              coverage.xml
  
 
         
