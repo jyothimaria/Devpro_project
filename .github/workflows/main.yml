@@ -51,6 +51,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: build-logs
+          path: logs
           
       - name: Run tests and generate coverage
         run: |
@@ -65,4 +66,4 @@ jobs:
           path: coverage.xml
  
 
-          path: logs
+        
