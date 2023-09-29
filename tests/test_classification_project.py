@@ -2,6 +2,7 @@ import pytest
 import tensorflow as tf
 import numpy as np
 from data_preparation import load_cifar10_data
+from train import train_model
 from model import create_cnn_model
 from predict import predict_image
 
@@ -14,6 +15,7 @@ def cifar10_data():
 def cifar10_model(cifar10_data):
     x_train, y_train, _, _ = cifar10_data
     model = create_cnn_model(x_train[0].shape)
+    train_model(model, x_train, y_train, epochs=1, batch_size=64)
     return model
 
 def test_data_preparation(cifar10_data):
